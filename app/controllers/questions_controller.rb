@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.all(:order=> "vote DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,13 +41,25 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new()
-	@question.text = params[:session][:initialText]
-	@question.asked = false
-	@question.vote = 0
+	if(params[:session] != nil)
+	
+		text = params[:session][:initialText]
+		if text.include?('vote')
+			vote_for = text.last
+			Question.find(vote_for.to_i()).increment(:vote)
+			return
+		else
+			@question.text = text	 
+			@question.asked = false
+			@question.vote = 0
+		end
+	else 
+		@question = Question.new(params[:question])		
+	end
 	
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to action: "index", notice: 'Question was successfully created.' }
         format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }
