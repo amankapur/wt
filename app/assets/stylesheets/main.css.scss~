@@ -1,0 +1,12 @@
+.hero-unit{
+  margin-top:0px;
+  padding-top: 0px;
+	text-align: center;
+}
+
+table{
+	margin: 0px auto;
+	td {
+		font-size: 1.4em;
+	}
+}
