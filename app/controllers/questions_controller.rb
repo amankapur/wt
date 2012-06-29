@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
 	if(params[:session] != nil)
 	
 		text = params[:session][:initialText]
-		if text.include?('vote')
+		if text.downcase.include?('vote')
 			vote_for = text.last
 			Question.find(vote_for.to_i()).increment(:vote)
 			return
