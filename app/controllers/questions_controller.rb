@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
 		text = params[:session][:initialText]
 		if text.downcase.include?('vote')
 			vote_for = text.last
-			Question.find(vote_for.to_i()).increment(:vote)
+			Question.find(vote_for.to_i()).increment(:vote).save()
 			return
 		else
 			@question.text = text	 
