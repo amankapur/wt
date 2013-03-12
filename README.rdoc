@@ -1,7 +1,6 @@
-TEXT TO QUESTION APP. 
+# TEXT TO QUESTION APP. 
 
 You're at a conference and wish to engage as much as you can. There is always limted time for the speaker to answer the large number of questions. This app helps people vote on questions to be answered by using SMS. 
 
-Redirect to /questions. 
-
+URL : http://whatisdaquestion.herokuapp.com/questions
 
